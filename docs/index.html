@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M++ Install site</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Poppins:wght@600;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --mpp-gold: #ffb300;
+            --mpp-orange: #ff6d00;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 179, 0, 0.2);
+            --black-hole: #000;
+            --event-horizon: rgba(255, 109, 0, 0.5);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: #020504;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- BACKGROUND: BLACK HOLE (AMBAR) --- */
+        .black-hole-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: -1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, #1a0f00 0%, #000 100%);
+            overflow: hidden;
+        }
+
+        .bh-container {
+            position: relative;
+            width: 60vh;
+            height: 60vh;
+        }
+
+        .singularity {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30vh; height: 30vh;
+            background: #000;
+            border-radius: 50%;
+            box-shadow: 0 0 60px 20px var(--event-horizon), 
+                        inset 0 0 100px #000;
+            z-index: 5;
+        }
+
+        .accretion-disk {
+            position: absolute;
+            top: -20%; left: -20%;
+            width: 140%; height: 140%;
+            border-radius: 45% 55% 50% 50% / 40% 40% 60% 60%;
+            background: radial-gradient(circle, transparent 40%, var(--mpp-gold) 60%, transparent 70%);
+            filter: blur(40px);
+            opacity: 0.6;
+            animation: rotateDisk 15s infinite linear;
+        }
+
+        @keyframes rotateDisk {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            height: 80px; display: flex; align-items: center;
+            position: fixed; top: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 10%;
+            justify-content: space-between;
+        }
+
+        .logo { font-family: 'Poppins'; font-size: 1.5rem; font-weight: 700; letter-spacing: -1px; }
+        .logo span { color: var(--mpp-gold); }
+
+        /* --- SEÇÕES --- */
+        .container { max-width: 1200px; margin: auto; padding: 0 2rem; }
+        section { min-height: 100vh; display: flex; align-items: center; padding: 100px 0; }
+        
+        h1 { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 7vw, 5.5rem); line-height: 0.9; margin-bottom: 2rem; }
+        .text-gradient { 
+            background: linear-gradient(to right, var(--mpp-gold), var(--mpp-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 3.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 4rem; width: 100%; }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+        }
+        .project-card:hover { background: rgba(255, 179, 0, 0.05); transform: translateY(-10px); }
+        .project-card i { color: var(--mpp-gold); margin-bottom: 1.5rem; }
+
+        /* --- BOTÃO DE DOWNLOAD --- */
+        .btn {
+            padding: 1.2rem 2.5rem; border-radius: 14px; border: none;
+            cursor: pointer; font-family: 'Poppins'; font-weight: 600;
+            transition: 0.4s; text-decoration: none; display: inline-flex;
+            align-items: center; gap: 10px;
+        }
+        .btn-primary { background: var(--mpp-gold); color: #000; }
+        .btn-primary:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 30px rgba(255, 179, 0, 0.4); 
+            background: #fff;
+        }
+
+        footer { padding: 40px; text-align: center; font-size: 0.8rem; opacity: 0.5; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">M++<span>_CORE</span></div>
+        <div style="font-size: 0.7rem; letter-spacing: 2px; opacity: 0.6;">v4.2 STABLE</div>
+    </nav>
+
+    <div class="black-hole-bg">
+        <div class="bh-container" id="bh-wrap">
+            <div class="accretion-disk"></div>
+            <div class="singularity" id="singularity"></div>
+        </div>
+    </div>
+
+    <main class="container">
+        <section id="home">
+            <div class="hero-content glass-card" id="hero-card">
+                <h1>NATIVE<br><span class="text-gradient">ENGINE</span></h1>
+                <p style="max-width: 500px; margin-bottom: 2.5rem; color: rgba(255,255,255,0.7);">
+                    Performance extrema para automação de sistemas. Interpretador nativo em C com interface moderna. Otimizado para x64 e x86.
+                </p>
+                <a href="MPP_V4.2_INSTALL_MANAGER_x64_x86.exe.rar" download class="btn btn-primary">
+                    <i data-lucide="download"></i>
+                    BAIXAR VERSÃO PARA WINDOWS
+                </a>
+            </div>
+        </section>
+
+        <section id="features" style="flex-direction: column; align-items: flex-start;">
+            <h2 style="font-family: 'Syne'; font-size: 3rem; margin-bottom: 1rem;">ESPECIFICAÇÕES</h2>
+            <div class="grid">
+                <div class="project-card">
+                    <i data-lucide="cpu"></i>
+                    <h3>Zero Overhead</h3>
+                    <p>Processamento direto em C. Esqueça a lentidão do Python puro.</p>
+                </div>
+                <div class="project-card">
+                    <i data-lucide="shield-check"></i>
+                    <h3>Privileged Access</h3>
+                    <p>Gerenciador com suporte nativo a UAC (Admin) para controle total do sistema.</p>
+                </div>
+                <div class="project-card">
+                    <i data-lucide="box"></i>
+                    <h3>Portable Deployment</h3>
+                    <p>Tudo o que você precisa em um único pacote estável de alta performance.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        M++ CORE ENGINE // DESENVOLVIDO POR MIGUELDEV // 2026
+    </footer>
+
+    <script>
+        // Smooth Scroll
+        const lenis = new Lenis();
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        // Ícones
+        lucide.createIcons();
+
+        // Animações GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from("#hero-card", {
+            duration: 1.5, y: 100, opacity: 0, ease: "power4.out"
+        });
+
+        // Efeito do Buraco Negro no Scroll
+        gsap.to("#bh-wrap", {
+            scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1
+            },
+            scale: 1.5,
+            rotation: 120,
+            filter: "brightness(1.5) contrast(1.2)"
+        });
+
+        // Parallax Mouse
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX - window.innerWidth / 2) * 0.015;
+            const y = (e.clientY - window.innerHeight / 2) * 0.015;
+            gsap.to("#bh-wrap", { x: x, y: y, duration: 2, ease: "power2.out" });
+        });
+    </script>
+</body>
+</html>
