@@ -1,0 +1,16 @@
+// exemplo.mpp — Seu primeiro programa em M++
+SAY.IT"{COR:BCIANO}================================{RESET}"
+SAY.IT"{COR:BBRANCO}   Bem-vindo ao M++ v4.0!     {RESET}"
+SAY.IT"{COR:BCIANO}================================{RESET}"
+
+SET nome = "Mundo"
+SAY.IT"Olá, {nome}!"
+
+INPUT usuario "Qual é o seu nome?"
+SAY.IT"{COR:BVERDE}Olá, {usuario}! M++ instalado com sucesso!{RESET}"
+
+FOR i FROM 1 TO 5 {
+    SAY.IT"  Linha {i} — M++ rodando!"
+FIM
+
+SAY.IT"{COR:AMARELO}Tudo certo! Execute: mpp arquivo.mpp{RESET}"
