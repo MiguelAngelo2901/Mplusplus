@@ -1,0 +1,2 @@
+mpp --ajuda
+mpp --versao
