@@ -1,5 +1,5 @@
 # Mplusplus
-mihna linguagem de programação feita inteiramente por IA e funcional 
+minha linguagem de programação feita inteiramente por IA e funcional 
 
 esse foi um resumo feito por outra IA que analizou o projeto >>                                                   
 
